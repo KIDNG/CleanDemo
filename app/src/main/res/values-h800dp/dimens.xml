@@ -11,7 +11,6 @@
   <dimen name="itemRepositoryMarginTop">4dp</dimen>
   <dimen name="itemRepositoryMarginLeft">4dp</dimen>
   <dimen name="itemRepositoryMarginRight">4dp</dimen>
-  <dimen name="avatarSize">48dp</dimen>
+  <dimen name="avatarSize">32dp</dimen>
   <dimen name="starSize">12dp</dimen>
-
 </resources>

@@ -3,7 +3,14 @@ apply plugin: 'com.android.application'
 android {
   compileSdkVersion 23
   buildToolsVersion "23.0.3"
-
+  signingConfigs{
+    releaseConfig {
+      keyAlias 'release'
+      keyPassword '123456'
+      storeFile file('release_key_store.jks')
+      storePassword '123456'
+    }
+  }
   defaultConfig {
     applicationId "com.kidng.cleandemo"
     minSdkVersion 15
@@ -15,6 +22,7 @@ android {
     release {
       minifyEnabled false
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+      signingConfig signingConfigs.releaseConfig
     }
   }
 }

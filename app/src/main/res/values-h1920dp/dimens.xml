@@ -5,13 +5,12 @@
   <dimen name="def_padding">8dp</dimen>
   <dimen name="itemUserNameTextSize">15sp</dimen>
   <dimen name="def_margin">8dp</dimen>
-  <dimen name="itemRepositoryNameTextSize">15sp</dimen>
-  <dimen name="itemRepositoryDescriptionTextSize">14sp</dimen>
-  <dimen name="itemRepositoryBottomTextSize">13sp</dimen>
-  <dimen name="itemRepositoryMarginTop">4dp</dimen>
+  <dimen name="itemRepositoryNameTextSize">16sp</dimen>
+  <dimen name="itemRepositoryDescriptionTextSize">15sp</dimen>
+  <dimen name="itemRepositoryBottomTextSize">14sp</dimen>
+  <dimen name="itemRepositoryMarginTop">8dp</dimen>
   <dimen name="itemRepositoryMarginLeft">4dp</dimen>
   <dimen name="itemRepositoryMarginRight">4dp</dimen>
-  <dimen name="avatarSize">48dp</dimen>
-  <dimen name="starSize">12dp</dimen>
-
+  <dimen name="avatarSize">64dp</dimen>
+  <dimen name="starSize">14dp</dimen>
 </resources>

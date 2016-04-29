@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:height="@dimen/starSize"
+    android:viewportHeight="200"
+    android:viewportWidth="200"
+    android:width="@dimen/starSize">
+  <group
+      android:name="star"
+      android:scaleX="0.1953125"
+      android:scaleY="0.1953125">
+    <path
+        android:name="body"
+        android:fillColor="#a9b7b7"
+        android:pathData="M826.752 979.392l-315.84-209.536-317.056 207.872 110.4-352.64L0 400.256l384-8.384 129.024-346.816L640 392.576l384 10.432-305.536 223.104L826.752 979.392z"/>
+  </group>
+</vector>
