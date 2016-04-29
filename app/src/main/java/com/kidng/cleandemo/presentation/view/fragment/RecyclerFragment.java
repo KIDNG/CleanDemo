@@ -18,6 +18,7 @@ import com.kidng.cleandemo.presentation.view.adapter.UserAdapter;
 import com.kidng.cleandemo.presentation.view.adapter.base.BaseRecyclerAdapter;
 import com.kidng.cleandemo.presentation.view.adapter.base.RecyclerFactory;
 import com.kidng.cleandemo.presentation.view.widget.DividerItemDecoration;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,6 +28,8 @@ public class RecyclerFragment extends BaseFragment implements UserListView, Repo
   private static final String BUNDLE_KEY_TYPE = "recycler_fragment_type";
   private static final int TYPE_USER = 1;
   private static final int TYPE_REPOSITORIES = 2;
+  private static final String KEY_TYPE = "save_type";
+  private static final String KEY_LIST = "save_list";
   private int mType;
   @Bind(R.id.recycler_view) RecyclerView mRecyclerView;
   private BaseRecyclerAdapter mAdapter;
@@ -56,8 +59,11 @@ public class RecyclerFragment extends BaseFragment implements UserListView, Repo
     mType = arg.getInt(BUNDLE_KEY_TYPE);
   }
 
-  @Override protected void init(View rootView) {
-    setupRecyclerView();
+  @Override protected void init(View rootView, Bundle saveInstanceState) {
+    if (saveInstanceState != null) {
+      mType = saveInstanceState.getInt(KEY_TYPE);
+    }
+    setupRecyclerView(saveInstanceState);
     initPresenter();
   }
 
@@ -69,13 +75,16 @@ public class RecyclerFragment extends BaseFragment implements UserListView, Repo
     }
   }
 
-  private void setupRecyclerView() {
+  private void setupRecyclerView(Bundle saveInstanceState) {
     if (mAdapter == null) {
       if (mType == TYPE_USER) {
         mAdapter = new UserAdapter(getContext());
       } else if (mType == TYPE_REPOSITORIES) {
         mAdapter = new RepositoriesAdapter(getContext());
       }
+    }
+    if (saveInstanceState != null) {
+      mAdapter.setData(saveInstanceState.getParcelableArrayList(KEY_LIST));
     }
     RecyclerFactory.create()
         .setItemDecoration(
@@ -87,6 +96,16 @@ public class RecyclerFragment extends BaseFragment implements UserListView, Repo
 
   @Override protected int getLayoutResource() {
     return R.layout.fragment_recycler;
+  }
+
+  @Override public void onSaveInstanceState(Bundle outState) {
+    super.onSaveInstanceState(outState);
+    outState.putInt(KEY_TYPE, mType);
+    if (mType == TYPE_USER) {
+      outState.putParcelableArrayList(KEY_LIST, (ArrayList<UserModel>) mAdapter.asList());
+    } else if (mType == TYPE_REPOSITORIES) {
+      outState.putParcelableArrayList(KEY_LIST, (ArrayList<RepositoriesModel>) mAdapter.asList());
+    }
   }
 
   public void toSearch(String query) {

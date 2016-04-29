@@ -1,9 +1,12 @@
 package com.kidng.cleandemo.presentation.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by android on 2016/4/28.
  */
-public class RepositoriesModel {
+public class RepositoriesModel implements Parcelable {
   private String forksCount;
   private String language;
   private String name;
@@ -73,4 +76,37 @@ public class RepositoriesModel {
         ", starCount='" + starCount + '\'' +
         '}';
   }
+
+  @Override public int describeContents() {
+    return 0;
+  }
+
+  @Override public void writeToParcel(Parcel dest, int flags) {
+    dest.writeString(this.forksCount);
+    dest.writeString(this.language);
+    dest.writeString(this.name);
+    dest.writeInt(this.id);
+    dest.writeString(this.description);
+    dest.writeString(this.starCount);
+  }
+
+  protected RepositoriesModel(Parcel in) {
+    this.forksCount = in.readString();
+    this.language = in.readString();
+    this.name = in.readString();
+    this.id = in.readInt();
+    this.description = in.readString();
+    this.starCount = in.readString();
+  }
+
+  public static final Parcelable.Creator<RepositoriesModel> CREATOR =
+      new Parcelable.Creator<RepositoriesModel>() {
+        @Override public RepositoriesModel createFromParcel(Parcel source) {
+          return new RepositoriesModel(source);
+        }
+
+        @Override public RepositoriesModel[] newArray(int size) {
+          return new RepositoriesModel[size];
+        }
+      };
 }

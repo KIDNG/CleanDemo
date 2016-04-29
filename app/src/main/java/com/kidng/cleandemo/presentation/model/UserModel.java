@@ -1,9 +1,12 @@
 package com.kidng.cleandemo.presentation.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by android on 2016/4/28.
  */
-public class UserModel {
+public class UserModel implements Parcelable {
   private final int userId;
 
   public UserModel(int userId) {
@@ -100,4 +103,42 @@ public class UserModel {
         ", email='" + email + '\'' +
         '}';
   }
+
+  @Override public int describeContents() {
+    return 0;
+  }
+
+  @Override public void writeToParcel(Parcel dest, int flags) {
+    dest.writeInt(this.userId);
+    dest.writeString(this.userName);
+    dest.writeString(this.userAvatar);
+    dest.writeString(this.userURL);
+    dest.writeInt(this.followersNumber);
+    dest.writeInt(this.followingNumber);
+    dest.writeString(this.fullName);
+    dest.writeString(this.blogAddress);
+    dest.writeString(this.email);
+  }
+
+  protected UserModel(Parcel in) {
+    this.userId = in.readInt();
+    this.userName = in.readString();
+    this.userAvatar = in.readString();
+    this.userURL = in.readString();
+    this.followersNumber = in.readInt();
+    this.followingNumber = in.readInt();
+    this.fullName = in.readString();
+    this.blogAddress = in.readString();
+    this.email = in.readString();
+  }
+
+  public static final Parcelable.Creator<UserModel> CREATOR = new Parcelable.Creator<UserModel>() {
+    @Override public UserModel createFromParcel(Parcel source) {
+      return new UserModel(source);
+    }
+
+    @Override public UserModel[] newArray(int size) {
+      return new UserModel[size];
+    }
+  };
 }

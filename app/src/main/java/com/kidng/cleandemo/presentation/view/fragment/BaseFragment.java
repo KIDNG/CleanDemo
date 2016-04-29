@@ -24,11 +24,11 @@ public abstract class BaseFragment extends Fragment implements BaseView {
       Bundle savedInstanceState) {
     View rootView = inflater.inflate(getLayoutResource(), container, false);
     ButterKnife.bind(this, rootView);
-    init(rootView);
+    init(rootView,savedInstanceState);
     return rootView;
   }
 
-  protected abstract void init(View rootView);
+  protected abstract void init(View rootView,Bundle savedInstanceState);
 
   protected abstract int getLayoutResource();
 
